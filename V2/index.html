@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WR1 Sports Coach</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #39ff14; color: #000;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: #000; font-family: 'Orbitron', sans-serif;" onclick="showScreen('home')">WR1 Sports Coach</a>
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="homeLink" onclick="showScreen('home')" style="color: #000;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="aboutLink" onclick="showScreen('about')" style="color: #000;">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="home" class="container mt-5">
+    <h2>Schulsport, <br>der nicht peinlich ist!</h2>
+    <br>
+    <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-neon-green" style="width: 100px; height: 100px; margin-right: 10px;" onclick="showScreen('schulerLogin')">Schüler</button>
+        <button type="button" class="btn btn-neon-green" style="width: 100px; height: 100px; margin-left: 10px;" onclick="showScreen('lehrerLogin')">Lehrer</button>
+    </div>
+</div>
+
+<div id="schulerLogin" class="container mt-5" style="display: none;">
+    <h2>Schüler-Login</h2>
+    <form>
+        <div class="mb-3">
+            <label for="schulerUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="schulerUsername" required>
+        </div>
+        <div class="mb-3">
+            <label for="schulerPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="schulerPassword" required>
+        </div>
+        <button type="button" class="btn btn-neon-green" onclick="showScreen('schulerHome')">Login</button>
+    </form>
+</div>
+
+<div id="lehrerLogin" class="container mt-5" style="display: none;">
+    <h2>Lehrer-Login</h2>
+    <form>
+        <div class="mb-3">
+            <label for="lehrerUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="lehrerUsername" required>
+        </div>
+        <div class="mb-3">
+            <label for="lehrerPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="lehrerPassword" required>
+        </div>
+        <button type="button" class="btn btn-neon-green" onclick="showScreen('lehrerHome')">Login</button>
+    </form>
+</div>
+
+<div id="schulerHome" class="container mt-5" style="display: none;">
+    <h2>Willkommen zu deiner Übungsübersicht!</h2>
+    <p>Hier kannst du sehen, welche Übungen du bereits geschafft hast, und welche du noch probieren solltest.</p>
+    <br>
+    <h3>Noch offen</h3>
+    <div class="row justify-content-center">
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-neon-green m-2 w-100" style="min-width: 10em;" onclick="showScreen('exercise1')">Handstand</button>
+        </div>
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-neon-green m-2 w-100" style="min-width: 10em;" onclick="showScreen('exercise2')">Rad</button>
+        </div>
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-neon-green m-2 w-100" style="min-width: 10em;" onclick="showScreen('exercise3')">Seilspringen</button>
+        </div>
+    </div>
+    <br>
+    <h3>Bereits geschafft</h3>
+    <div class="row justify-content-center">
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-neon-green m-2 w-100" style="min-width: 10em;" onclick="showScreen('exercise4')">Sprung über das Pferd</button>
+        </div>
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-neon-green m-2 w-100" style="min-width: 10em;" onclick="showScreen('exercise5')">Balken</button>
+        </div>
+    </div>
+</div>
+
+<div id="lehrerHome" class="container mt-5" style="display: none;">
+    <!-- Lehrer Home screen content goes here -->
+</div>
+
+<div id="exercise1" class="container mt-5" style="display: none;">
+    <h2>Handstand</h2>
+    <p>Der Handstand ist eine grundlegende Übung im Turnen. So schaffst auch du ihn:</p>
+    <ul>
+        <li>Stelle dich gerade hin und strecke deine Arme über deinen Kopf.</li>
+        <li>Lehne dich nach vorne und platziere deine Hände auf dem Boden.</li>
+        <li>Schwinge ein Bein nach oben und folge mit dem anderen Bein, bis beide Beine in der Luft sind.</li>
+        <li>Halte deinen Körper gerade und balanciere dich aus.</li>
+    </ul>
+
+    <video width="100%" height="auto" controls loop>
+        <source src="assets/videos/exercise1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+    <button type="button" class="btn btn-neon-green" onclick="showScreen('exerciseCapture')">Ausprobieren</button>
+    <br>
+    <br>
+</div>
+
+<div id="exerciseCapture" class="container mt-5" style="display: none;">
+    <h2>Übungserfassung</h2>
+    <p>Stelle dich vor die Kamera und beginne mit deiner Übung. Unsere KI wird deine Bewegungen analysieren und dir Feedback geben.</p>
+    <br>
+    <video id="webcam" autoplay playsinline width="640" height="480"></video>
+    <canvas id="output" width="640" height="480"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+    <script src="script.js"></script>
+
+    <button type="button" class="btn btn-neon-green" onclick="startCapture()">Start</button>
+    <button type="button" class="btn btn-neon-green" onclick="stopCapture()">Stop</button>
+    <br>
+    <br>
+</div>
+
+
+<div id="about" class="container mt-5" style="display: none;">
+    <h2>Über Uns</h2>
+    <p>
+        Unsere Web-App wurde entwickelt, um Schülern und Lehrern zu helfen, den Sportunterricht unterhaltsamer, weniger stressig und vor allem weniger peinlich zu gestalten. Wie machen wir das? Durch die Integration von künstlicher Intelligenz in den Prozess!
+    </p>
+    <p>
+        Unser Hauptziel ist es, eine positive und angenehme Lernumgebung zu schaffen, in der jeder Schüler seine Fähigkeiten und Fertigkeiten verbessern kann, ohne sich unwohl zu fühlen. Wir glauben, dass Technologie eine Schlüsselrolle dabei spielen kann, diese Vision Wirklichkeit werden zu lassen.
+    </p>
+    <p>
+        Darüber hinaus legen wir großen Wert auf den Datenschutz. Unsere Web-App entspricht den Datenschutzbestimmungen, sodass Sie sicher sein können, dass Ihre Daten sicher und geschützt sind.
+    </p>
+</div>
+
+<script>
+    function showScreen(screenId) {
+        var screens = ['home', 'schulerLogin', 'lehrerLogin', 'schulerHome', 'exercise1', 'exerciseCapture', 'lehrerHome', 'about'];
+        screens.forEach(function(screen) {
+            var element = document.getElementById(screen);
+            if(element) {
+                element.style.display = screen === screenId ? 'block' : 'none';
+            }
+        });
+    }
+
+    async function startCapture() {
+        // Add your start capture code here
+    }
+
+    function stopCapture() {
+        // Add your stop capture code here
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
