@@ -85,9 +85,12 @@ async function setupCamera() {
     video.style.width = '100%';
     video.style.height = 'auto';
     
+    // Ask the user which camera to use
+    const facingMode = window.confirm('Möchtest du die Frontkamera nutzen? Klicke auf "OK" für Ja und auf "Abbrechen" für Nein.') ? 'user' : 'environment';
+    
     const constraints = {
         video: {
-            facingMode: 'user'
+            facingMode: facingMode
         }
     };
     
@@ -101,6 +104,7 @@ async function setupCamera() {
         };
     });
 }
+
 
 let captureInterval;
 

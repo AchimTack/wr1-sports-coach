@@ -99,7 +99,19 @@
 </div>
 
 <div id="lehrerHome" class="container mt-5" style="display: none;">
-    <!-- Lehrer Home screen content goes here -->
+    <h2>Willkommen!</h2>
+    <p>Bitte wählen Sie den Namen eines Schülers aus:</p>
+    <br>
+    <br>
+    <select id="studentSelect" class="form-select">
+        <option selected>Wählen Sie einen Schüler</option>
+        <option value="1">Max Mustermann</option>
+        <option value="2">Anna Schmidt</option>
+        <option value="3">Julia Müller</option>
+    </select>
+    <br>
+    <br>
+    <button type="button" class="btn btn-neon-green" onclick="showStudentInfo()">Informationen anzeigen</button>
 </div>
 
 <div id="exercise1" class="container mt-5" style="display: none;">
@@ -114,6 +126,46 @@
 
     <video width="100%" height="auto" controls loop>
         <source src="assets/videos/exercise1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+    <button type="button" class="btn btn-neon-green" onclick="showScreen('exerciseCapture')">Ausprobieren</button>
+    <br>
+    <br>
+</div>
+
+<div id="exercise2" class="container mt-5" style="display: none;">
+    <h2>Rad</h2>
+    <p>Das Rad ist eine grundlegende Übung im Turnen. So schaffst auch du es:</p>
+    <ul>
+        <li>Stelle dich seitlich hin und strecke deine Arme über deinen Kopf.</li>
+        <li>Lehne dich zur Seite und platziere eine Hand auf dem Boden, gefolgt von der anderen Hand.</li>
+        <li>Schwinge ein Bein über deinen Körper und folge mit dem anderen Bein, bis du wieder auf den Füßen stehst.</li>
+        <li>Halte deinen Körper gerade und balanciere dich aus.</li>
+    </ul>
+
+    <video width="100%" height="auto" controls loop>
+        <source src="assets/videos/exercise2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+    <button type="button" class="btn btn-neon-green" onclick="showScreen('exerciseCapture')">Ausprobieren</button>
+    <br>
+    <br>
+</div>
+
+<div id="exercise3" class="container mt-5" style="display: none;">
+    <h2>Seilspringen</h2>
+    <p>Seilspringen ist eine grundlegende Übung im Turnen. So schaffst auch du es:</p>
+    <ul>
+        <li>Stelle dich gerade hin und halte das Seil in beiden Händen.</li>
+        <li>Beginne das Seil zu schwingen und springe im richtigen Moment darüber.</li>
+        <li>Halte deinen Körper gerade und lande sanft auf deinen Füßen.</li>
+        <li>Wiederhole den Vorgang und versuche, ein gleichmäßiges Tempo zu halten.</li>
+    </ul>
+
+    <video width="100%" height="auto" controls loop>
+        <source src="assets/videos/exercise3.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <br>
@@ -156,7 +208,9 @@
 
 <script>
     function showScreen(screenId) {
-        var screens = ['home', 'schulerLogin', 'lehrerLogin', 'schulerHome', 'exercise1', 'exerciseCapture', 'lehrerHome', 'about'];
+        var screens = ['home', 'schulerLogin', 'lehrerLogin', 'schulerHome', 
+                        'exercise1', 'exercise2', 'exercise3',
+                        'exerciseCapture', 'lehrerHome', 'about'];
         screens.forEach(function(screen) {
             var element = document.getElementById(screen);
             if(element) {
