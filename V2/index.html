@@ -126,13 +126,14 @@
     <h2>Übungserfassung</h2>
     <p>Stelle dich vor die Kamera und beginne mit deiner Übung. Unsere KI wird deine Bewegungen analysieren und dir Feedback geben.</p>
     <br>
-    <video id="webcam" autoplay playsinline width="640" height="480"></video>
+    <video id="webcam" autoplay playsinline width="640" height="480" style="display: none;"></video>
     <canvas id="output" width="640" height="480"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
     <script src="script.js"></script>
-
+    <br>
+    <br>
     <button type="button" class="btn btn-neon-green" onclick="startCapture()">Start</button>
     <button type="button" class="btn btn-neon-green" onclick="stopCapture()">Stop</button>
     <br>
@@ -162,14 +163,6 @@
                 element.style.display = screen === screenId ? 'block' : 'none';
             }
         });
-    }
-
-    async function startCapture() {
-        // Add your start capture code here
-    }
-
-    function stopCapture() {
-        // Add your stop capture code here
     }
 </script>
 

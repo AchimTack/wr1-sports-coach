@@ -85,7 +85,13 @@ async function setupCamera() {
     video.style.width = '100%';
     video.style.height = 'auto';
     
-    const stream = await navigator.mediaDevices.getUserMedia({ 'video': true });
+    const constraints = {
+        video: {
+            facingMode: 'user'
+        }
+    };
+    
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
     video.srcObject = stream;
     video.style.display = 'none'; // Hide the video element
 
@@ -96,16 +102,22 @@ async function setupCamera() {
     });
 }
 
-async function main() {
+let captureInterval;
+
+async function startCapture() {
     const video = await setupCamera();
     video.play();
 
     const model = await loadModel();
 
-    setInterval(() => {
+    captureInterval = setInterval(() => {
         detectPose(model, video);
     }, 100);
 }
 
-window.onload = main;
+function stopCapture() {
+    clearInterval(captureInterval);
+    const video = document.getElementById('webcam');
+    video.srcObject.getTracks().forEach(track => track.stop());
+}
 
