@@ -37,3 +37,7 @@ h3 {
 canvas {
     width: 100%;
 }
+
+.img-fluid {
+    max-width: 70%;
+}
