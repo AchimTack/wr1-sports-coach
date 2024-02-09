@@ -120,7 +120,26 @@
     </select>
     <br>
     <br>
-    <button type="button" class="btn btn-neon-green" onclick="showStudentInfo()">Informationen anzeigen</button>
+    <button type="button" class="btn btn-neon-green" onclick="showScreen('studentInfo')">Leistungsfortschritt anzeigen</button>
+</div>
+
+<div id="studentInfo" class="container mt-5" style="display: none;">
+    <h2>Leistungsfortschritt des Schülers</h2>
+    <p>Hier können Sie sehen, welche Übungen der Schüler bereits geschafft hat und welche noch offen sind.</p>
+    <br>
+    <h3>Noch offen</h3>
+    <ul>
+        <li>Handstand</li>
+        <li>Rad</li>
+        <li>Seilspringen</li>
+    </ul>
+    <br>
+    <h3>Bereits geschafft</h3>
+    <ul>
+        <li>Sprung über das Pferd</li>
+        <li>Balken</li>
+    </ul>
+    <button type="button" class="btn btn-neon-green" onclick="showScreen('lehrerHome')">Zurück zur Schülerauswahl</button>
 </div>
 
 <div id="exercise1" class="container mt-5" style="display: none;">
@@ -185,7 +204,7 @@
 
 <div id="exerciseCapture" class="container mt-5" style="display: none;">
     <h2>Übungserfassung</h2>
-    <p>Stelle dich vor die Kamera und beginne mit deiner Übung. Unsere KI wird deine Bewegungen analysieren und dir Feedback geben.</p>
+    <p>Stelle dich vor die Kamera, klicke "Start" und beginne mit deiner Übung nach dem Countdown. Unsere KI wird deine Bewegungen analysieren und dir Feedback geben.</p>
     <br>
     <video id="webcam" autoplay playsinline width="640" height="480" style="display: none;"></video>
     <canvas id="output" width="640" height="480"></canvas>
@@ -201,6 +220,23 @@
     <br>
 </div>
 
+<div id="exercise_result" class="container mt-5" style="display: none;">
+    <h2>Gut gemacht!</h2>
+    <p>
+        Hier sind einige Tipps, um deinen Handstand zu verbessern:
+    </p>
+    <ul>
+        <li>Stelle sicher, dass deine Hände direkt unter deinen Schultern sind.</li>
+        <li>Halte deinen Körper gerade und angespannt, wie eine Linie.</li>
+        <li>Übe das Balancieren mit Hilfe einer Wand, bevor du es ohne versuchst.</li>
+        <li>Atme ruhig und gleichmäßig, um deine Konzentration zu behalten.</li>
+        <li>Übe regelmäßig, um deine Kraft und Balance zu verbessern.</li>
+    </ul>
+    <p>
+        Denke daran, dass jeder Fortschritt ein Erfolg ist. Bleib dran und du wirst deinen Handstand verbessern!
+    </p>
+    <button type="button" class="btn btn-neon-green" onclick="showScreen('schulerHome')">Zurück zur Startseite</button>
+</div>
 
 <div id="about" class="container mt-5" style="display: none;">
     <h2>Über Uns</h2>
@@ -219,7 +255,8 @@
     function showScreen(screenId) {
         var screens = ['home', 'schulerLogin', 'lehrerLogin', 'schulerHome', 
                         'exercise1', 'exercise2', 'exercise3',
-                        'exerciseCapture', 'lehrerHome', 'about'];
+                        'exerciseCapture', 'exercise_result',
+                        'lehrerHome', 'studentInfo', 'about'];
         screens.forEach(function(screen) {
             var element = document.getElementById(screen);
             if(element) {

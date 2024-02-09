@@ -114,14 +114,41 @@ async function startCapture() {
 
     const model = await loadModel();
 
-    captureInterval = setInterval(() => {
-        detectPose(model, video);
-    }, 100);
+    const ctx = document.getElementById('output').getContext('2d');
+    let countdown = 5;
+    const countdownInterval = setInterval(() => {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        const fontSize = Math.min(ctx.canvas.width, ctx.canvas.height) / 5; // Make the font size larger
+        ctx.font = `bold ${fontSize}px 'Orbitron'`; // Use Orbitron font and make it bold
+        ctx.fillStyle = "#39ff14"; // Set the font color to neon green
+        ctx.textAlign = "center"; // Center the text
+        ctx.textBaseline = "middle"; // Align the text vertically in the middle
+        ctx.fillText(countdown--, ctx.canvas.width / 2, ctx.canvas.height / 2);
+        if (countdown < 0) {
+            clearInterval(countdownInterval);
+            captureInterval = setInterval(() => {
+                detectPose(model, video);
+            }, 100);
+        }
+    }, 1000);
 }
 
 function stopCapture() {
     clearInterval(captureInterval);
     const video = document.getElementById('webcam');
     video.srcObject.getTracks().forEach(track => track.stop());
-}
 
+    const ctx = document.getElementById('output').getContext('2d');
+    const fontSize = Math.min(ctx.canvas.width, ctx.canvas.height) / 10;
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.font = `bold ${fontSize}px 'Orbitron'`;
+    ctx.fillStyle = "#39ff14";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("analysiere...", ctx.canvas.width / 2, ctx.canvas.height / 2 + fontSize);
+
+    setTimeout(() => {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        showScreen('exercise_result');
+    }, 5000);
+}
