@@ -134,21 +134,38 @@ async function startCapture() {
 }
 
 function stopCapture() {
+    // Stop tracking
     clearInterval(captureInterval);
     const video = document.getElementById('webcam');
     video.srcObject.getTracks().forEach(track => track.stop());
 
+    // Clear canvas
     const ctx = document.getElementById('output').getContext('2d');
-    const fontSize = Math.min(ctx.canvas.width, ctx.canvas.height) / 10;
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    // Display "analysiere..."
+    const fontSize = Math.min(ctx.canvas.width, ctx.canvas.height) / 10;
     ctx.font = `bold ${fontSize}px 'Orbitron'`;
     ctx.fillStyle = "#39ff14";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText("analysiere...", ctx.canvas.width / 2, ctx.canvas.height / 2 + fontSize);
-
-    setTimeout(() => {
+    let pulse = 0;
+    let pulseDirection = 1;
+    const pulseInterval = setInterval(() => {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.font = `bold ${fontSize + pulse}px 'Orbitron'`;
+        ctx.fillText("analysiere...", ctx.canvas.width / 2, ctx.canvas.height / 2 + fontSize);
+        pulse += pulseDirection;
+        if (pulse > 10 || pulse < 0) {
+            pulseDirection *= -1;
+        }
+    }, 100);
+    // Wait for 5 seconds
+    setTimeout(() => {
+        // Clear canvas again
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        // Show exercise_result screen
         showScreen('exercise_result');
-    }, 5000);
+    }, 3000);
 }
