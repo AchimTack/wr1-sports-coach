@@ -107,13 +107,8 @@ async function setupCamera() {
 
 
 let captureInterval;
-let isCapturing = false;
 
 async function startCapture() {
-    if (isCapturing) return; // Prevent startCapture if already capturing
-    isCapturing = true;
-    stopCapture(false); // Stop capture without transitioning to result screen
-
     const video = await setupCamera();
     video.play();
 
@@ -122,10 +117,6 @@ async function startCapture() {
     const ctx = document.getElementById('output').getContext('2d');
     let countdown = 5;
     const countdownInterval = setInterval(() => {
-        if (!isCapturing) {
-            clearInterval(countdownInterval);
-            return;
-        }
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         const fontSize = Math.min(ctx.canvas.width, ctx.canvas.height) / 5; // Make the font size larger
         ctx.font = `bold ${fontSize}px 'Orbitron'`; // Use Orbitron font and make it bold
@@ -136,20 +127,13 @@ async function startCapture() {
         if (countdown < 0) {
             clearInterval(countdownInterval);
             captureInterval = setInterval(() => {
-                if (!isCapturing) {
-                    clearInterval(captureInterval);
-                    return;
-                }
                 detectPose(model, video);
             }, 100);
         }
     }, 1000);
 }
 
-function stopCapture(transitionToResult = true) {
-    if (!isCapturing) return; // Prevent stopCapture if not currently capturing
-    isCapturing = false;
-
+function stopCapture() {
     // Stop tracking
     clearInterval(captureInterval);
     const video = document.getElementById('webcam');
@@ -159,37 +143,29 @@ function stopCapture(transitionToResult = true) {
     const ctx = document.getElementById('output').getContext('2d');
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-    if (transitionToResult) {
-        // Display "analysiere..."
-        const fontSize = Math.min(ctx.canvas.width, ctx.canvas.height) / 10;
-        ctx.font = `bold ${fontSize}px 'Orbitron'`;
-        ctx.fillStyle = "#39ff14";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        let pulse = 0;
-        let pulseDirection = 1;
-        const pulseInterval = setInterval(() => {
-            if (!isCapturing) {
-                clearInterval(pulseInterval);
-                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-                return;
-            }
-            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            ctx.font = `bold ${fontSize + pulse}px 'Orbitron'`;
-            ctx.fillText("analysiere...", ctx.canvas.width / 2, ctx.canvas.height / 2 + fontSize);
-            pulse += pulseDirection;
-            if (pulse > 10 || pulse < 0) {
-                pulseDirection *= -1;
-            }
-        }, 100);
-        // Wait for 3 seconds
-        setTimeout(() => {
-            if (!isCapturing) return; // Exit if capturing has been stopped during timeout
-            // Clear canvas again
-            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    // Display "analysiere..."
+    const fontSize = Math.min(ctx.canvas.width, ctx.canvas.height) / 10;
+    ctx.font = `bold ${fontSize}px 'Orbitron'`;
+    ctx.fillStyle = "#39ff14";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    let pulse = 0;
+    let pulseDirection = 1;
+    const pulseInterval = setInterval(() => {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.font = `bold ${fontSize + pulse}px 'Orbitron'`;
+        ctx.fillText("analysiere...", ctx.canvas.width / 2, ctx.canvas.height / 2 + fontSize);
+        pulse += pulseDirection;
+        if (pulse > 10 || pulse < 0) {
+            pulseDirection *= -1;
+        }
+    }, 100);
+    // Wait for 5 seconds
+    setTimeout(() => {
+        // Clear canvas again
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-            // Show exercise_result screen
-            showScreen('exercise_result');
-        }, 3000);
-    }
+        // Show exercise_result screen
+        showScreen('exercise_result');
+    }, 3000);
 }
