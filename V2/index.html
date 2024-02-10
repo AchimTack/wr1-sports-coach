@@ -145,7 +145,7 @@
 
 <div id="exercise1" class="container mt-5" style="display: none;">
     <h2>Flugrolle</h2>
-    <p>Der Handstand ist eine grundlegende Übung im Turnen. So schaffst auch du ihn:</p>
+    <p>Die Flugrolle ist eine grundlegende Übung im Turnen. So schaffst auch du sie:</p>
     <ul>
         <li>Stelle dich gerade hin und strecke deine Arme über deinen Kopf.</li>
         <li>Lehne dich nach vorne und platziere deine Hände auf dem Boden.</li>
@@ -165,7 +165,7 @@
 
 <div id="exercise2" class="container mt-5" style="display: none;">
     <h2>Handstand</h2>
-    <p>Das Rad ist eine grundlegende Übung im Turnen. So schaffst auch du es:</p>
+    <p>Der Handstand ist eine grundlegende Übung im Turnen. So schaffst auch du ihn:</p>
     <ul>
         <li>Stelle dich seitlich hin und strecke deine Arme über deinen Kopf.</li>
         <li>Lehne dich zur Seite und platziere eine Hand auf dem Boden, gefolgt von der anderen Hand.</li>
@@ -185,12 +185,52 @@
 
 <div id="exercise3" class="container mt-5" style="display: none;">
     <h2>Radschlag</h2>
+    <p>Der Radschlag ist eine grundlegende Übung im Turnen. So schaffst auch du ihn:</p>
+    <ul>
+        <li>Stelle dich seitlich hin und strecke deine Arme über deinen Kopf.</li>
+        <li>Lehne dich zur Seite und platziere eine Hand auf dem Boden, gefolgt von der anderen Hand.</li>
+        <li>Schwinge ein Bein über deinen Körper und folge mit dem anderen Bein, bis du wieder auf den Füßen stehst.</li>
+        <li>Halte deinen Körper gerade und balanciere dich aus.</li>
+    </ul>
+
+    <video width="100%" height="auto" controls loop>
+        <source src="assets/videos/exercise3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+    <button type="button" class="btn btn-neon-green" onclick="showScreen('exerciseCapture')">Ausprobieren</button>
+    <br>
+    <br>
+</div>
+
+<div id="exercise4" class="container mt-5" style="display: none;">
+    <h2>Handstandabrolle</h2>
     <p>Seilspringen ist eine grundlegende Übung im Turnen. So schaffst auch du es:</p>
     <ul>
-        <li>Stelle dich gerade hin und halte das Seil in beiden Händen.</li>
-        <li>Beginne das Seil zu schwingen und springe im richtigen Moment darüber.</li>
-        <li>Halte deinen Körper gerade und lande sanft auf deinen Füßen.</li>
-        <li>Wiederhole den Vorgang und versuche, ein gleichmäßiges Tempo zu halten.</li>
+        <li>Stell dich hin und strecke dein Bein aus.</li>
+        <li>Geh nach vorne auf die Hände.</li>
+        <li>Zieh dein anderes Bein nach oben.</li>
+        <li>Ziehe dein erstes Bein hinterher.</li>
+        <li>Komm in die Balance.</li>
+        <li>Leg dein Kinn auf deine Brust und roll dich ab.</li>
+    </ul>
+
+    <video width="100%" height="auto" controls loop>
+        <source src="assets/videos/exercise3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+    <button type="button" class="btn btn-neon-green" onclick="showScreen('exerciseCapture')">Ausprobieren</button>
+    <br>
+    <br>
+</div>
+
+<div id="exercise5" class="container mt-5" style="display: none;">
+    <h2>Rolle vorwärst in Handstand</h2>
+    <p>Diese Übung ist etwas schwieriger. So schaffst auch du sie:</p>
+    <ul>
+        <li>Stelle dich gerade hin und beginne die Vorwärtsrolle.</li>
+        <li>Drück dich mit deinem Bein vom Boden ab und stütz dich auf deine Hände.</li>
     </ul>
 
     <video width="100%" height="auto" controls loop>
@@ -255,7 +295,7 @@
 <script>
     function showScreen(screenId) {
         var screens = ['home', 'schulerLogin', 'lehrerLogin', 'schulerHome', 
-                        'exercise1', 'exercise2', 'exercise3',
+                        'exercise1', 'exercise2', 'exercise3', 'exercise4', 'exercise5',
                         'exerciseCapture', 'exercise_result',
                         'lehrerHome', 'studentInfo', 'about'];
         screens.forEach(function(screen) {
