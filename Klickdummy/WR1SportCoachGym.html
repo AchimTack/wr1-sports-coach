@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WR21 Sports Coach</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+  .dark-grey-bg {
+    background-color: #1F1F1F;
+  }
+  .neon-green {
+    color: #39FF14;
+  }
+  .neon-green-bg {
+    background-color: #39FF14;
+  }
+  .camera-image-placeholder {
+    background-color: #555;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+</style>
+</head>
+<body class="dark-grey-bg text-white">
+<div class="p-4">
+  <h1 class="text-4xl neon-green text-center mb-6">WR21 Sports Coach</h1>
+  <br><br>
+  <div id="app" class="space-y-4">
+    <!-- User Type Selection Screen -->
+    <div id="userTypeScreen" class="text-center">
+      <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="showLoginScreen('Schüler')">Schüler</button>
+      <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="showLoginScreen('Lehrer')">Lehrer</button>
+    </div>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="hidden text-center">
+      <input type="text" placeholder="User" class="px-4 py-2 m-2"><br>
+      <input type="password" placeholder="PWD" class="px-4 py-2 m-2"><br>
+      <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="showChallengeScreen()">GO</button>
+    </div>
+    <!-- Challenge Selection Screen -->
+    <div id="challengeScreen" class="hidden text-center">
+      <p>Hi User!</p>
+      <p>Choose your challenge:</p><br>
+      <div class="flex justify-center">
+        <div class="flex flex-col">
+          <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="showChallenge('A')">Challenge A</button>
+          <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="showChallenge('B')">Challenge B</button>
+          <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="showChallenge('C')">Challenge C</button>
+        </div>
+        <div class="flex flex-col">
+          <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="showChallenge('D')">Challenge D</button>
+          <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="showChallenge('E')">Challenge E</button>
+          <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="showChallenge('F')">Challenge F</button>
+        </div>
+      <!-- More challenge buttons can be added here -->
+      </div>
+      <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="showStartScreen()">Logout</button>
+    </div>
+    <!-- Challenge Detail Screen -->
+    <div id="challengeDetailScreen" class="hidden text-center">
+      <p>Challenge A:</p>
+      <div class="camera-image-placeholder w-64 h-64 mx-auto my-4">Camera Image</div>
+      <button class="neon-green-bg text-black px-4 py-2 m-2" id="startStopButton" onclick="toggleChallenge()">Start</button>
+    </div>
+    <!-- Challenge Result Screen -->
+    <div id="challengeResultScreen" class="hidden text-center">
+      <p>Well Done!</p><br>
+      <p style="text-align: left; padding-left: 1rem;">Change the following:</p>
+      <ul class="list-disc list-inside" style="text-align: left; padding-left: 1rem;">
+        <li>stretched legs</li>
+        <li>stiffer arms</li>
+      </ul>
+      <br>
+      <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="retryChallenge()">Try Again</button>
+      <button class="neon-green-bg text-black px-4 py-2 m-2" onclick="goBack()">Go Back</button>
+    </div>
+  </div>
+</div>
+<script>
+  function showStartScreen(userType) {
+    document.getElementById('challengeScreen').classList.add('hidden');
+    document.getElementById('userTypeScreen').classList.remove('hidden');
+  }
+
+  function showLoginScreen(userType) {
+    document.getElementById('userTypeScreen').classList.add('hidden');
+    document.getElementById('loginScreen').classList.remove('hidden');
+  }
+
+  function showChallengeScreen() {
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('challengeScreen').classList.remove('hidden');
+  }
+
+  function showChallenge(challengeId) {
+    document.getElementById('challengeScreen').classList.add('hidden');
+    document.getElementById('challengeDetailScreen').classList.remove('hidden');
+  }
+
+  function toggleChallenge() {
+    const button = document.getElementById('startStopButton');
+    if (button.textContent === 'Start') {
+      button.textContent = 'Stop';
+      // Here you would start the camera and the challenge
+    } else {
+      button.textContent = 'Start';
+      document.getElementById('challengeDetailScreen').classList.add('hidden');
+      document.getElementById('challengeResultScreen').classList.remove('hidden');
+      // Here you would stop the camera and the challenge
+    }
+  }
+
+  function retryChallenge() {
+    document.getElementById('challengeResultScreen').classList.add('hidden');
+    document.getElementById('challengeDetailScreen').classList.remove('hidden');
+    document.getElementById('startStopButton').textContent = 'Start';
+  }
+
+  function goBack() {
+    document.getElementById('challengeResultScreen').classList.add('hidden');
+    document.getElementById('challengeScreen').classList.remove('hidden');
+  }
+</script>
+</body>
+</html>
